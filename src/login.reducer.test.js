@@ -1,16 +1,14 @@
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import {startLogin} from "./login.reducer";
+
 jest.mock('./user.service');
 const mockStore = configureStore([thunk]);
 
-it('should execute fetch data', () => {
+it('should execute fetch data', async () => {
   const store = mockStore({});
-
-  // Return the promise
-  return store.dispatch(startLogin())
-    .then(() => {
-      const actions = store.getActions();
-      expect(actions[0]).toEqual({type:'LOGIN_START'});
-    })
-})
+  await store.dispatch(startLogin());
+  const actions = store.getActions();
+  expect(actions[0]).toEqual({type: 'LOGIN_START'});
+  expect(actions[1]).toEqual({type: 'LOGIN_SUCCESS'});
+});
