@@ -1,11 +1,10 @@
 const login = () => {
-  // return new Promise(res => {
-  //   setTimeout(() => {
-  //     res();
-  //   }, 2000);
-  // });
+  return new Promise(res => {
+    setTimeout(() => {
+      res();
+    }, 2000);
+  });
 
-  return fetch('https://jsonplaceholder.typicode.com1/todos/1');
 };
 
 

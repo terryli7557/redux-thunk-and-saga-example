@@ -1,0 +1,11 @@
+{
+  "login": {
+    "logining": false,
+    "isAuthenticated": false
+  },
+  "profile": {
+    "firstName": "",
+    "loadingProfile": true,
+    "hasError": false
+  }
+}

@@ -3,16 +3,20 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import {applyMiddleware, createStore, compose} from "redux";
+import {applyMiddleware, createStore, compose, combineReducers} from "redux";
 import {Provider} from "react-redux";
-import reducer from "./reducer";
+import loginReducer from "./login.reducer";
+import profileReducer from "./profile.reducer";
 import thunk from "redux-thunk";
-
+import preloadedState from './state-mock';
+// const preloadedState = {};
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducer, composeEnhancers(
-  applyMiddleware(thunk)
-));
+
+const store = createStore(
+  combineReducers({login: loginReducer, profile: profileReducer}), preloadedState, composeEnhancers(
+    applyMiddleware(thunk)
+  ));
 
 ReactDOM.render(
   <Provider store={store}>

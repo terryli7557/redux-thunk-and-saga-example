@@ -3,7 +3,7 @@ import Button from 'antd/lib/button';
 import {connect} from 'react-redux'
 
 import 'antd/dist/antd.css';
-import {startLogin} from "./reducer";
+import {startLogin} from "./login.reducer";
 
 const UserProfile = ({firstName, loading}) => (
   loading ?
@@ -43,11 +43,11 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    loading: state.logining,
-    firstName: state.firstName,
-    isAuthenticated: state.isAuthenticated,
-    loadingProfile: state.loadingProfile,
-    hasError: state.hasError,
+    loading: state.login.logining,
+    firstName: state.profile.firstName,
+    isAuthenticated: state.login.isAuthenticated,
+    loadingProfile: state.profile.loadingProfile,
+    hasError: state.profile.hasError,
   }
 }
 
