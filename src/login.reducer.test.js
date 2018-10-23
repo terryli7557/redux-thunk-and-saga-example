@@ -5,7 +5,7 @@ import {startLogin} from "./login.reducer";
 jest.mock('./user.service');
 const mockStore = configureStore([thunk]);
 
-it('should execute fetch data', async () => {
+it('should login and load profile', async () => {
   const store = mockStore({});
   await store.dispatch(startLogin());
   const actions = store.getActions();
