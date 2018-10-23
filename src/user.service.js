@@ -5,7 +5,7 @@ const login = () => {
   //   }, 2000);
   // });
 
-  return fetch('https://jsonplaceholder.typicode.com1/todos/1');
+  return fetch('https://jsonplaceholder.typicode.com/todos/1');
 };
 
 

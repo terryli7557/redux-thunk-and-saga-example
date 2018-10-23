@@ -31,9 +31,19 @@ class App extends Component {
               <UserProfile firstName={this.props.firstName} loading={this.props.loadingProfile}/>
             </>
             :
-            <Button type="primary" loading={this.props.loading} onClick={this.props.login}>
-              Login
-            </Button>
+            <>
+              <div>
+                <Button type="primary" loading={this.props.loading} onClick={this.props.login}>
+                  Login (thunk)
+                </Button>
+              </div>
+              <br/>
+              <div>
+                <Button type="primary" loading={this.props.loading} onClick={this.props.loginSaga}>
+                  Login (saga)
+                </Button>
+              </div>
+            </>
           }
         </div>
       </>
@@ -56,6 +66,9 @@ function mapStateToDispatch(dispatch) {
   return {
     login: () => {
       dispatch(startLogin());
+    },
+    loginSaga: () => {
+      dispatch({type: 'USER_LOGIN_REQUESTED', payload: {id: 123}})
     }
   };
 }

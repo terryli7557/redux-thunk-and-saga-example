@@ -2,13 +2,17 @@ const LOAD_PROFILE_START = 'LOAD_PROFILE_START';
 const LOAD_PROFILE_SUCCESS = 'LOAD_PROFILE_SUCCESS';
 const ERROR = 'ERROR';
 
-export function startLoadingProfile() {
-  return {type: LOAD_PROFILE_START};
-}
+export const getError = error => (
+  {type: ERROR, error}
+);
 
-export function loadingProfileSuccess(firstName) {
-  return {type: LOAD_PROFILE_SUCCESS, firstName};
-}
+export const startLoadingProfile = () => (
+  {type: LOAD_PROFILE_START}
+);
+
+export const loadingProfileSuccess = (firstName) => (
+  {type: LOAD_PROFILE_SUCCESS, firstName}
+);
 
 const initialState = {
   firstName: '',

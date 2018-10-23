@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import {applyMiddleware, createStore, compose, combineReducers} from "redux";
@@ -10,13 +9,19 @@ import profileReducer from "./profile.reducer";
 import thunk from "redux-thunk";
 import preloadedState from './state-mock';
 // const preloadedState = {};
+import mySaga from './login.saga';
+import createSagaMiddleware from 'redux-saga';
 
+
+const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(
   combineReducers({login: loginReducer, profile: profileReducer}), preloadedState, composeEnhancers(
-    applyMiddleware(thunk)
+    applyMiddleware(thunk, sagaMiddleware)
   ));
+
+sagaMiddleware.run(mySaga);
 
 ReactDOM.render(
   <Provider store={store}>

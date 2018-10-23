@@ -7,39 +7,30 @@ const ERROR = 'ERROR';
 
 export const startLogin = () => async (dispatch) => {
   try {
-    dispatch({
-      type: LOGIN_START
-    });
+    dispatch(loginStart());
 
     await userService.login();
     dispatch(loginSuccess());
     dispatch(startLoadingProfile());
-    // if (true) {
-    //   throw new Error('error');
-    // }
 
     const firstName = await userService.getUserProfile();
     dispatch(loadingProfileSuccess(firstName));
   } catch (e) {
     dispatch({type: ERROR});
   }
-
-
-  // login().then(_ => {
-  //   dispatch(loginSuccess());
-  //   dispatch(startLoadingProfile());
-  //   getUserProfile().then(firstName => {
-  //     dispatch(loadingProfileSuccess(firstName));
-  //   })
-  // });
 };
 
-export function loginSuccess() {
-  return {
-    type: LOGIN_SUCCESS
-  };
-}
+export const loginStart = () => (
+  {
+    type: LOGIN_START
+  }
+);
 
+export const loginSuccess = () => (
+  {
+    type: LOGIN_SUCCESS
+  }
+);
 
 const initialState = {
   logining: false,
